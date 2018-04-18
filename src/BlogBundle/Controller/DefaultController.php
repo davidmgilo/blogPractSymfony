@@ -27,4 +27,25 @@ class DefaultController extends Controller
         die();
 //        return $this->render('BlogBundle:Default:index.html.twig');
     }
+    
+    public function categoriesAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $category_repo = $em->getRepository("BlogBundle:Category");
+        $categories = $category_repo->findAll();
+        
+        foreach($categories as $category){
+            echo $category->getName().'<br/>';
+//            echo $entry->getCategory()->getName().'<br/>';
+//            echo $entry->getUser()->getName().'<br/>';
+            $entries = $category->getEntries();
+            foreach ($entries as $entry){
+                echo $entry->getTitle().'<br/>';
+            }
+            
+            echo "<hr/>";
+        }
+        
+        die();
+    }
 }

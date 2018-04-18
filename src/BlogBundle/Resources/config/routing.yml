@@ -1,3 +1,11 @@
 blog_homepage:
     path:     /
     defaults: { _controller: BlogBundle:Default:index }
+
+blog_categories:
+    path:     /categories
+    defaults: { _controller: BlogBundle:Default:categories }
+
+blog_tags:
+    path:     /tags
+    defaults: { _controller: BlogBundle:Default:tags }

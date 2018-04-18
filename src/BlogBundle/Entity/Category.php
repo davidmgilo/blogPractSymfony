@@ -22,6 +22,20 @@ class Category
      */
     private $description;
 
+    protected $entry;
+    
+    public function _construct(){
+        $this->entry = new ArrayCollection();
+    }
+    
+    public function addEntry(\BlogBundle\Entity\Entry $entry){
+        $this->entry[] = $entry;
+        return $this;
+    }
+    
+    public function getEntries(){
+        return $this->entry;
+    }
 
     /**
      * Get id
