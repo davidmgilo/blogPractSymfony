@@ -41,7 +41,21 @@ class Entry
      * @var \BlogBundle\Entity\User
      */
     private $user;
-
+    
+    protected $entryTag;
+    
+    public function _construct(){
+        $this->entryTag = new ArrayCollection();
+    }
+    
+    public function addEntryTag(\BlogBundle\Entity\Tag $tag){
+        $this->entryTag[] = $tag;
+        return $this;
+    }
+    
+    public function getEntryTag(){
+        return $this->entryTag;
+    }
 
     /**
      * Get id
