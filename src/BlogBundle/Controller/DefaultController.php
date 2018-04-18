@@ -48,4 +48,25 @@ class DefaultController extends Controller
         
         die();
     }
+    
+    public function tagsAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $tag_repo = $em->getRepository("BlogBundle:Tag");
+        $tags = $tag_repo->findAll();
+        
+        foreach($tags as $tag){
+            echo $tag->getName().'<br/>';
+//            echo $entry->getCategory()->getName().'<br/>';
+//            echo $entry->getUser()->getName().'<br/>';
+            $entries = $tag->getEntryTag();
+            foreach ($entries as $entry){
+                echo $entry->getEntry()->getTitle().'<br/>';
+            }
+            
+            echo "<hr/>";
+        }
+        
+        die();
+    }
 }

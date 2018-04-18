@@ -22,6 +22,20 @@ class Tag
      */
     private $description;
 
+    protected $entryTag;
+    
+    public function _construct(){
+        $this->entryTag = new ArrayCollection();
+    }
+    
+    public function addEntry(\BlogBundle\Entity\Entry $entry){
+        $this->entryTag[] = $entry;
+        return $this;
+    }
+    
+    public function getEntryTag(){
+        return $this->entryTag;
+    }
 
     /**
      * Get id
