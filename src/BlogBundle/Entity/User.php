@@ -1,11 +1,11 @@
 <?php
 
 namespace BlogBundle\Entity;
-
+use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * User
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var integer
@@ -42,7 +42,23 @@ class User
      */
     private $imagen;
 
-
+    
+    public function getUserName(){
+        return $this->email;
+    }
+    
+    public function getSalt(){
+        return null;
+    }
+    
+    public function getRoles(){
+        return array($this->getRole());
+    }
+    
+    public function eraseCredentials(){
+        
+    }
+    
     /**
      * Get id
      *
