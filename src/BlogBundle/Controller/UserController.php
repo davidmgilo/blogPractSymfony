@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function loginAction(Request $request)
     {
-        $authenticationsUtils = $this->get("security.authentications_utils");
+        $authenticationsUtils = $this->get("security.authentication_utils");
         $error = $authenticationsUtils->getLastAuthenticationError();
         $lastUsername = $authenticationsUtils->getLastUsername();
         
