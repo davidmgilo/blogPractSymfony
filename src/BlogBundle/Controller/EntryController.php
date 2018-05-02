@@ -84,5 +84,16 @@ class EntryController extends Controller
                 ));
 	}
 	
+    public function indexAction(Request $request){		
+		$em = $this->getDoctrine()->getEntityManager();
+		$entry_repo=$em->getRepository("BlogBundle:Entry");
+                $entries=$entry_repo->findAll();
+               
+		
+                return $this->render("BlogBundle:Entry:index.html.twig",array(
+			"entries" => $entries,
+
+		));
+	}    
 	
 }

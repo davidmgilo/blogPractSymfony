@@ -1,6 +1,6 @@
 blog_homepage:
     path:     /
-    defaults: { _controller: BlogBundle:Default:index }
+    defaults: { _controller: BlogBundle:Entry:index }
 
 login:
     path:     /login
