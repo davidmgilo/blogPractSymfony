@@ -78,7 +78,42 @@ class CategoryController extends Controller
 		return $this->redirectToRoute("blog_index_category");
 	}
 	
-	
+	public function editAction(Request $request, $id){
+		$em = $this->getDoctrine()->getEntityManager();
+		$category_repo=$em->getRepository("BlogBundle:Category");
+		$category=$category_repo->find($id);
+		
+		$form = $this->createForm(CategoryType::class,$category);
+		
+		$form->handleRequest($request);
+		
+		if($form->isSubmitted()){
+			if($form->isValid()){
+				
+				$category->setName($form->get("name")->getData());
+				$category->setDescription($form->get("description")->getData());
+				
+				$em->persist($category);
+				$flush = $em->flush();
+				
+				if($flush==null){
+					$status = "La categoria se ha editado correctamente !!";
+				}else{
+					$status ="Error al editar la categoria!!";
+				}
+				
+			}else{
+				$status = "La categoria no se ha editado, porque el formulario no es valido !!";
+			}
+			
+			$this->session->getFlashBag()->add("status", $status);
+			return $this->redirectToRoute("blog_index_category");
+		}
+		
+		return $this->render("BlogBundle:Category:edit.html.twig",array(
+			"form" => $form->createView()
+		));
+	}
 	
 	
 }
