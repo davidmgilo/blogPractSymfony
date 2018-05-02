@@ -1,0 +1,26 @@
+{% extends "BlogBundle::layout.html.twig" %}
+
+{% block content %}
+    <div class="col-lg-6">
+        <h2>Llistat de Tags</h2>
+        <hr/>
+{% for message in app.session.flashbag().get('status') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+       
+        
+        <table class="table table-bordered">
+            <tr>
+                <th>Nom</th>
+                <th>Descripció</th>
+            </tr>
+            {% for tag in tags %}
+                <tr>
+                    <td>{{ tag.name }}</td>
+                    <td>{{ tag.description }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="clearfix"></div>
+{% endblock %}

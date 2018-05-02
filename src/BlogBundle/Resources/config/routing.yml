@@ -11,7 +11,18 @@ login_check:
 
 logout:
     path:     /logout
+    
+blog_index_tag:
+    path: /tags
+    defaults: { _controller: BlogBundle:Tag:index }
 
+blog_add_tag:
+    path: /tags/add
+    defaults: { _controller: BlogBundle:Tag:add }
+
+blog_delete_tag:
+    path: /tags/delete/{id}
+    defaults: { _controller: BlogBundle:Tag:delete }
 #blog_categories:
 #    path:     /categories
 #    defaults: { _controller: BlogBundle:Default:categories }
