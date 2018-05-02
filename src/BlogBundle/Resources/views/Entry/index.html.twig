@@ -1,6 +1,8 @@
 {% extends "BlogBundle::layout.html.twig" %}
 
-
+{% block menu %}
+    {% include "BlogBundle:Category:menu.categories.html.twig" with {'categories': categories}  %}
+{% endblock %}
 {% block content %}
 
 {% for message in app.session.flashbag().get('status') %}
@@ -12,6 +14,7 @@
         <p class="pull-left" style="margin-right:20px;"><img width="200" src="{{ asset("uploads/"~entry.image)}}"/></p>
         <p><strong>{{entry.title}}</strong></p>
         <p>Autor:{{entry.user.name}}</p>
+        <p>{{entry.category.name}}</p>
         
         <p>
             {% for et in entry.entryTag %}
@@ -22,7 +25,8 @@
         {%if (app.user.id is defined) and (entry.user.id == app.user.id) %}
         <p>
             <a href="{{path("blog_delete_entry",{"id":entry.id})}}" class="btn btn-danger">Esborrar</a>
-            <a href="{{path("blog_edit_entry",{"id":entry.id})}}" class="btn btn-warning">{% trans %}btn_edit{% endtrans %}</a>
+            <!--<a href="{{path("blog_edit_entry",{"id":entry.id})}}" class="btn btn-warning">{% trans %}btn_edit{% endtrans %}</a>-->
+            <a href="{{path("blog_edit_entry",{"id":entry.id})}}" class="btn btn-warning">Editar</a>
         </p>
         {%endif%}
         
