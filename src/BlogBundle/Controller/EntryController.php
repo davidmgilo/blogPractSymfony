@@ -86,14 +86,24 @@ class EntryController extends Controller
 	
     public function indexAction(Request $request){		
 		$em = $this->getDoctrine()->getEntityManager();
-		$entry_repo=$em->getRepository("BlogBundle:Entry");
-                $entries=$entry_repo->findAll();
+//		$entry_repo=$em->getRepository("BlogBundle:Entry");
+//                $entries=$entry_repo->findAll();
                 $category_repo=$em->getRepository("BlogBundle:Category");
 		$categories=$category_repo->findAll();
+                $dql = "SELECT e FROM BlogBundle:Entry e";
+                $query = $em->createQuery($dql);
+                
+                $paginator = $this->get('knp_paginator');
+                $pagination = $paginator->paginate(
+                        $query,
+                        $request->query->getInt('page',1),
+                        5
+                );
                 
                 return $this->render("BlogBundle:Entry:index.html.twig",array(
-			"entries" => $entries,
+//			"entries" => $entries,
                         "categories" => $categories,
+                    'pagination' => $pagination,
 
 		));
 	} 

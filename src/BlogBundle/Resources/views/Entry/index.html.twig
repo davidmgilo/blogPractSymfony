@@ -9,7 +9,11 @@
     <div class="alert alert-success">{{ message }}</div>
 {% endfor %}
 
-{% for entry in entries %}
+<div class="count">
+    Entrades en total: {{ pagination.getTotalItemCount }}
+</div>
+
+{% for entry in pagination %}
     <div class="col-lg-11">
         <p class="pull-left" style="margin-right:20px;"><img width="200" src="{{ asset("uploads/"~entry.image)}}"/></p>
         <p><strong>{{entry.title}}</strong></p>
@@ -36,5 +40,8 @@
     
     <div class="clearfix"></div>
 {% endfor %}
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>
 
 {% endblock %}
