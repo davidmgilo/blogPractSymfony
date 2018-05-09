@@ -30,7 +30,7 @@
         <p>
             <a href="{{path("blog_delete_entry",{"id":entry.id})}}" class="btn btn-danger">Esborrar</a>
             <!--<a href="{{path("blog_edit_entry",{"id":entry.id})}}" class="btn btn-warning">{% trans %}btn_edit{% endtrans %}</a>-->
-            <a href="{{path("blog_edit_entry",{"id":entry.id})}}" class="btn btn-warning">Editar</a>
+            <a href="{{path("blog_edit_entry",{"id":entry.id})}}" class="btn btn-warning">{% trans %}btn_edit{% endtrans %}</a>
         </p>
         {%endif%}
         
