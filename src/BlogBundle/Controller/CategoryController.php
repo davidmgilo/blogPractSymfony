@@ -114,6 +114,19 @@ class CategoryController extends Controller
 			"form" => $form->createView()
 		));
 	}
+        
+        public function categoryAction($id){
+		$em = $this->getDoctrine()->getEntityManager();
+		$category_repo=$em->getRepository("BlogBundle:Category");
+		$category=$category_repo->find($id);
+		
+		$categories=$category_repo->findAll();
+	
+		return $this->render("BlogBundle:Category:category.html.twig",array(
+			"category" => $category,
+                    "categories" => $categories,
+		));
+	}
 	
 	
 }
