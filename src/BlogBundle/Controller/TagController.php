@@ -28,9 +28,13 @@ class TagController extends Controller{
 		$em = $this->getDoctrine()->getEntityManager();
 		$tag_repo=$em->getRepository("BlogBundle:Tag");
 		$tags=$tag_repo->findAll();
+                
+                $category_repo=$em->getRepository("BlogBundle:Category");
+		$categories=$category_repo->findAll();
 		
 		return $this->render("BlogBundle:Tag:index.html.twig",array(
-			"tags" => $tags
+			"tags" => $tags,
+                    "categories" => $categories,
 		));
 	}
    
